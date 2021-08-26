@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="mystyle.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <div class="bo">
+        <audio id="audio">
+            <source src="media/sound.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio2">
+            <source src="media/aw.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio1">
+            <source src="media/clap.mp3" type="audio/mpeg">
+        </audio>
+    <div id="text">
+        <h1 id="tex">Show</h1>
+        <button class="btn btn-danger" onclick="ref()">PLay Again</button>
+    </div>
+    <div class="he" id="hee">
+        <div class="turn">
+        <h3 id="text1">X's Turn</h3>
+        <h3 id="text2">O's Turn</h3>
+        </div>
+        <div class="cont">
+         <div id="div1" onclick="fun(1)">
+         </div>
+         <div id="div2" onclick="fun(2)">
+         </div>
+         <div id="div3" onclick="fun(3)">
+         </div>
+         <div id="div4" onclick="fun(4)">
+         </div>
+         <div id="div5" onclick="fun(5)">
+         </div>
+         <div id="div6" onclick="fun(6)">
+         </div>
+         <div id="div7" onclick="fun(7)">
+         </div>
+          <div id="div8" onclick="fun(8)">
+         </div>
+          <div id="div9" onclick="fun(9)">
+       </div>
+   </div>   
+</div>
+</div>
+<script> 
+    var ccount=0;
+    function ply(agf){
+        var audio=document.getElementById("audio");
+        if(agf==0){
+            audio.play();
+        }
+        else if(agf==1){
+            audio.pause();
+            var audio1=document.getElementById("audio1");
+             audio1.play();
+        }
+        else{
+               audio.pause();
+            var audio1=document.getElementById("audio2");
+             audio1.play();
+        }
+}
+    function ref(){
+        location.reload();
+    }
+show(0);
+    let b=1;
+    let c=0;
+    function fun (a) {
+        ply(0);
+         let aa=document.getElementById("div"+a)
+        if(aa.innerText==""){
+        if(b==1){
+            aa.innerText="X";
+            aa.style.color = "#87CEEB";
+             aa.style.fontWeight = "bold";
+            b=2; 
+            change(0);
+        }
+        else{
+            aa.innerText="O";
+            aa.style.color = "#87CEEB";
+            aa.style.fontWeight = "bold";
+            b=1;
+            change(1);
+        }
+        
+    }
+    setTimeout(result,2000);
+    
+    }
+    function change(df){
+          if(df==0){
+let qwe=document.getElementById("text2") 
+            qwe.style.backgroundColor="#87CEEB";
+            qwe.style.borderRadius = "10px";
+            qwe.style.color ="white";
+              document.getElementById("text1").style="none";
+            }
+            else{ 
+                let qwe=document.getElementById("text1") 
+            qwe.style.backgroundColor="#87CEEB";
+            qwe.style.borderRadius = "10px";
+            qwe.style.color ="white";
+            document.getElementById("text2").style="none";
+            } 
+    }
+ 
+  function show(as,bb){
+    let aa=  document.getElementById('text');
+       if(ccount>6)
+       {
+        ply(3);
+ document.getElementById('hee').innerHTML=" ";
+            aa.style.display="Block";
+            document.getElementById('tex').innerText="Match Draw !!!!"
+       }
+       else{
+        ply(1);
+        if(as==1){
+            document.getElementById('hee').innerHTML=" ";
+            aa.style.display="Block";
+        }
+        else{
+            aa.style.display ="none";
+        }
+        document.getElementById('tex').innerText=bb +" Player Wins !!!!";    
+}
+}
+    function result(){
+        if((div1.innerText=='X' && div2.innerText=='X' && div3.innerText =='X') ||
+         (div1.innerText=='X' && div4.innerText=='X' && div7.innerText =='X') || (div3.innerText=='X' && div6.innerText=='X' && div9.innerText =='X') || (div7.innerText=='X' && div8.innerText=='X' && div9.innerText =='X')|| (div1.innerText=='X' && div5.innerText=='X' && div9.innerText =='X')|| (div3.innerText=='X' && div5.innerText=='X' && div7.innerText =='X')|| (div2.innerText=='X' && div5.innerText=='X' && div8.innerText=='X')){
+        show(1,'X');
+        }
+          
+           else if((div1.innerText=='O' && div2.innerText=='O' && div3.innerText =='O') ||
+         (div1.innerText=='O' && div4.innerText=='O' && div7.innerText =='O') || (div3.innerText=='O' && div6.innerText=='O' && div9.innerText =='O') || (div7.innerText=='O' && div8.innerText=='O' && div9.innerText =='O')|| (div1.innerText=='O' && div5.innerText=='O' && div9.innerText =='O')|| (div3.innerText=='O' && div5.innerText=='O' && div7.innerText =='O')||(div2.innerText=='O' && div5.innerText=='O' && div8.innerText=='O')){
+        show(1,'O');
+           }
+           else{
+           ccount++;
+           if(ccount==9)
+            show();
+       }
+    }
+ </script>
+</body>
+</html>
